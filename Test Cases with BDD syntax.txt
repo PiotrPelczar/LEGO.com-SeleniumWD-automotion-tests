@@ -1,0 +1,56 @@
+Test Case 1 - Testing if "Add to Bag" button puts the item to "My Bag"
+
+Given that the user adds a product by using 'Add to bag' button
+And user goes to 'My bag'
+Then this product should be in his bag
+
+
+================================================================================
+
+Test Case 2 - Testing if default search results are sorted by relevance
+
+Given that the user types 'Real Madrid – Santiago Bernabéu Stadium' in the search engine
+And search is being performed
+And search results are displayed sorted by relevance
+Then the first result should be Real Madrid – Santiago Bernabéu Stadium
+
+
+================================================================================
+
+Test Case3 - Testing if the most expensive item in the group of under 25$ is less than 25$
+
+Given that the user selects a group of products under 25$
+And products are displayed
+And products sorted by 'Price: High to Low'
+Then the first product on the list should have a price < 25$
+
+
+================================================================================
+
+Test Case4 - Testing if the least expensive item in the group of products over 100$ is 100$ or more
+
+Given that the user selects a group of products over 100$
+And products are displayed
+And products sorted by 'Price: Low to High'
+Then the first product on the list should have a price > 100$
+
+================================================================================
+
+Test Case 5 - Adding products in 'My bag' by using '+' button
+
+Given that the user adds a product by using 'Add to bag' button
+And user goes to 'My bag'
+When user clicks '+' symbol
+Then one more of the same product is added to his order
+And the Total Order price is equal to the sum of the values of the selected items
+
+================================================================================
+
+Test Case 6 - Selecting number of products by typing their quantity
+
+Given that the user opens bestsellers
+And user opens chosen product details by clicking on products name
+And user types "5" in the products quantity selection tool
+And user clicks on 'Add to Bag' button
+When user goes to 'My bag'
+Then 5 items of the previously chosen product should be in his 'bag'

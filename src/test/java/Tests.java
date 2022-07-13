@@ -65,7 +65,7 @@ public class Tests {
     @Test
     public void TC2() {
 
-        //Test Case 1 - Testing if default search results are sorted by relevance
+        //Test Case 2 - Testing if default search results are sorted by relevance
 
         // Given that the user types 'Real Madrid – Santiago Bernabéu Stadium' in the search engine
         // And search is being performed
@@ -195,7 +195,7 @@ public class Tests {
     @Test
     public void TC5() {
 
-        //Test Case 1 - Testing adding products to the order by using "+" button in 'My Bag'
+        //Test Case 1 - Adding products in 'My bag' by using '+' button
 
        // Given that the user adds a product by using 'Add to bag' button
        // And user goes to 'My bag'
@@ -256,7 +256,7 @@ public class Tests {
     @Test
     public void TC6() {
 
-        //Test Case 1 - Testing adding products to the order by using "+" button in 'My Bag'
+        //Test Case 6 - Selecting number of products by typing their quantity
 
         // Given that the user opens bestsellers
         // And user opens chosen product details by clicking on products name
