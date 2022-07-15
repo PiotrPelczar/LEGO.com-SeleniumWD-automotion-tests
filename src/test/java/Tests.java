@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,31 +33,30 @@ public class Tests {
         System.setProperty("webdriver.chrome.driver", "c:/Chromedriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.navigate().to("https://www.lego.com/en-us");
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
 
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")));
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")).click();
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[2]/div/button[2]")).click();
+        driver.navigate().to("https://www.lego.com/en-us");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")));
+        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test=\"cookie-accept-all\"]")));
+        driver.findElement(By.cssSelector("button[data-test=\"cookie-accept-all\"]")).click();
+
 
 
         driver.findElement(By.cssSelector("#blt51f52bea34c3fb01_menubutton")).click();
-        driver.findElement(By.cssSelector("#blte6fb96bc03e90791_submenubutton > div")).click();
-        driver.findElement(By.cssSelector("#__next > div.MediaQuery__MediaHideable-sc-1poqfy2-0.JbPTs > header > div.HeaderDesktopstyles__HeaderWrapper-r4w2ln-1.kNEtZz > div.MainBarstyles__Container-sc-1cg7sjw-1.kXzbKR > div > div:nth-child(3) > nav > div > div.SubMenustyles__Container-lbil4s-0.hvbDJ > div > div.SubMenustyles__ChildrenContainer-lbil4s-7.ffWOxg > div > div > div:nth-child(5) > a > span")).click();
+        driver.findElement(By.cssSelector("#__next > div.MediaQuery__MediaHideable-sc-1poqfy2-0.JbPTs > header > div.HeaderDesktopstyles__HeaderWrapper-r4w2ln-1.kNEtZz > div.MainBarstyles__Container-sc-1cg7sjw-1.kXzbKR > div > div:nth-child(3) > nav > div > div.SubMenustyles__Container-lbil4s-0.jIkTVk > ul > li:nth-child(9) > div > a")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/main/div/div[3]/div/div/section/div/div/div[2]/ul/li[8]/div/div[3]/div[2]/button/div[3]")).click();
 
-        String item1 = driver.findElement(By.xpath("/html/body/div[1]/main/div/div[4]/div/div/section/div/div/div[2]/ul/li[1]/div/div[3]/div[1]/a/h2/span")).getText();
-        driver.findElement(By.xpath("/html/body/div[1]/main/div/div[4]/div/div/section/div/div/div[2]/ul/li[1]/div/div[3]/div[2]/button")).click();
+      String item1 = driver.findElement(By.cssSelector("#bltd69af38026d9ea16 > section > div > div > div.Productsstyles__ProductsWrapper-r9qrnh-0.erhzce > ul > li:nth-child(8) > div > div.ProductLeafSharedstyles__Column-sc-1epu2xb-1.eTTqVI > div.ProductLeafSharedstyles__DetailsRow-sc-1epu2xb-4.heRrTF > a > h2 > span")).getText();
+      driver.findElement(By.cssSelector("a[data-test=\"view-my-bag\"]")).click();
 
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div[2]/div[2]/div[2]/a")).click();
+      String item2 = driver.findElement(By.cssSelector("#main-content > div > div.MinHeightContent-sc-1delze2-0.lfErNH > div.Cartstyles__Wrapper-sc-7x7mam-2.ivTbFz > div.Cartstyles__ContentContainer-sc-7x7mam-3.ccRTdK > div > div > div.LineItemSectionstyles__LineItemsContentWrapper-sc-15qoiay-2.iamOvA > div > div.LineItemDetailsstyles__CustomWrapper-sc-1bhwxkp-20.jwRwvK > div.LineItemDetailsstyles__LineItemDetailsContainer-sc-1bhwxkp-16.UIsis > div.LineItemDetailsstyles__TitleWrapper-sc-1bhwxkp-23.kbZUcW > div > a > h3 > span")).getText();
+        System.out.println(item2);
+        System.out.println(item1);
 
-        String item2 = driver.findElement(By.xpath("/html/body/div[1]/main/div/div[1]/div[2]/div[1]/div/div/div[2]/div[1]/div[1]/div[2]/div[1]/div/a/h3/span")).getText();
+      Assertions.assertEquals(item1, item2);
 
-
-        Assertions.assertEquals(item1, item2);
-
-        driver.quit();
+      driver.quit();
 
 
 
@@ -76,14 +76,15 @@ public class Tests {
         System.setProperty("webdriver.chrome.driver", "c:/Chromedriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.navigate().to("https://www.lego.com/en-us");
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
 
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")));
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")).click();
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[2]/div/button[2]")).click();
+        driver.navigate().to("https://www.lego.com/en-us");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")));
+        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test=\"cookie-accept-all\"]")));
+        driver.findElement(By.cssSelector("button[data-test=\"cookie-accept-all\"]")).click();
+
+
         driver.findElement(By.cssSelector("#__next > div.MediaQuery__MediaHideable-sc-1poqfy2-0.JbPTs > header > div.HeaderDesktopstyles__HeaderWrapper-r4w2ln-1.kNEtZz > div.MainBarstyles__Container-sc-1cg7sjw-1.kXzbKR > div > div.MainBarstyles__ActionsContainer-sc-1cg7sjw-15.dQygBi > div > button")).click();
         String itemName = "Real Madrid – Santiago Bernabéu Stadium";
         driver.findElement(By.id("desktop-search-search-input")).sendKeys(itemName);
@@ -109,15 +110,13 @@ public class Tests {
         System.setProperty("webdriver.chrome.driver", "c:/Chromedriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
+
         driver.navigate().to("https://www.lego.com/en-us");
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")));
         driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
-
-       new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")));
-       driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")).click();
-       driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[2]/div/button[2]")).click();
-
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test=\"cookie-accept-all\"]")));
+        driver.findElement(By.cssSelector("button[data-test=\"cookie-accept-all\"]")).click();
 
         driver.findElement(By.id("blt51f52bea34c3fb01_menubutton")).click();
         driver.findElement(By.cssSelector("#blte6fb96bc03e90791_submenubutton > div > span")).click();
@@ -157,13 +156,13 @@ public class Tests {
         System.setProperty("webdriver.chrome.driver", "c:/Chromedriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
+
         driver.navigate().to("https://www.lego.com/en-us");
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")));
         driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")));
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")).click();
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[2]/div/button[2]")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test=\"cookie-accept-all\"]")));
+        driver.findElement(By.cssSelector("button[data-test=\"cookie-accept-all\"]")).click();
 
 
         driver.findElement(By.id("blt51f52bea34c3fb01_menubutton")).click();
@@ -206,19 +205,19 @@ public class Tests {
         System.setProperty("webdriver.chrome.driver", "c:/Chromedriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.navigate().to("https://www.lego.com/en-us");
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
 
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")));
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")).click();
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[2]/div/button[2]")).click();
+        driver.navigate().to("https://www.lego.com/en-us");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")));
+        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test=\"cookie-accept-all\"]")));
+        driver.findElement(By.cssSelector("button[data-test=\"cookie-accept-all\"]")).click();
+
 
         driver.findElement(By.id("blt51f52bea34c3fb01_menubutton")).click();
         driver.findElement(By.cssSelector("#__next > div.MediaQuery__MediaHideable-sc-1poqfy2-0.JbPTs > header > div.HeaderDesktopstyles__HeaderWrapper-r4w2ln-1.kNEtZz > div.MainBarstyles__Container-sc-1cg7sjw-1.kXzbKR > div > div:nth-child(3) > nav > div > div.SubMenustyles__Container-lbil4s-0.jIkTVk > ul > li:nth-child(9) > div > a")).click();
         driver.findElement(By.cssSelector("#bltd69af38026d9ea16 > section > div > div > div.Productsstyles__ProductsWrapper-r9qrnh-0.erhzce > ul > li:nth-child(3) > div > div.ProductLeafSharedstyles__Column-sc-1epu2xb-1.eTTqVI > div.ProductLeafListingstyles__ActionRow-sc-19n1otk-2.coyJam > button > div.ButtonLabelWithProgressstyles__StyledMessage-sc-19upyqe-1.ifFIha")).click();
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div[2]/div[2]/div[2]/a")).click();
+        driver.findElement(By.cssSelector("a[data-test=\"view-my-bag\"]")).click();
 
         //adding 3 more of the same items by +
         driver.findElement(By.className("add")).click();
@@ -269,24 +268,30 @@ public class Tests {
         System.setProperty("webdriver.chrome.driver", "c:/Chromedriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.navigate().to("https://www.lego.com/en-us");
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
 
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")));
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[3]/div[2]/span")).click();
-        driver.findElement(By.xpath("/html/body/div[6]/div/aside/div/div/div[2]/div/button[2]")).click();
+        driver.navigate().to("https://www.lego.com/en-us");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")));
+        driver.findElement(By.cssSelector("#__next > div:nth-child(7) > div > div > div.AgeGatestyles__Panels-xudtvj-2.bGqBZC > div.AgeGatestyles__Panel-xudtvj-3.AgeGatestyles__GrownUps-xudtvj-4.kGpmWw > div > button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test=\"cookie-accept-all\"]")));
+        driver.findElement(By.cssSelector("button[data-test=\"cookie-accept-all\"]")).click();
+
 
         driver.findElement(By.id("blt51f52bea34c3fb01_menubutton")).click();
         driver.findElement(By.cssSelector("#__next > div.MediaQuery__MediaHideable-sc-1poqfy2-0.JbPTs > header > div.HeaderDesktopstyles__HeaderWrapper-r4w2ln-1.kNEtZz > div.MainBarstyles__Container-sc-1cg7sjw-1.kXzbKR > div > div:nth-child(3) > nav > div > div.SubMenustyles__Container-lbil4s-0.jIkTVk > ul > li:nth-child(9) > div > a")).click();
         driver.findElement(By.cssSelector("#bltd69af38026d9ea16 > section > div > div > div.Productsstyles__ProductsWrapper-r9qrnh-0.erhzce > ul > li:nth-child(7) > div > div.ProductLeafSharedstyles__Column-sc-1epu2xb-1.eTTqVI > div.ProductLeafSharedstyles__DetailsRow-sc-1epu2xb-4.heRrTF > a > h2")).click();
 
 
+      //  if (driver.findElement(By.cssSelector("#IPEdInvtL > img")).isDisplayed()){
+      //      driver.findElement(By.id("noButton")).click();
+      //  }
+
+
+
 
         driver.findElement(By.cssSelector("#main-content > div > div.ProductDetailsPagestyles__ProductOverviewContainer-sc-1waehzg-1.dgDnXa > div > div.ProductOverviewstyles__Container-sc-1a1az6h-2.hrtCoK > div.QuantitySelectorstyles__Container-sc-1nfm8rg-0.hsSpBq.ProductActionsstyles__QuantitySelector-sc-18otgdy-5.gEGZyQ > div.Quantitystyles__QuantityWrapper-ee4u7w-0.hDZZEl.QuantitySelectorstyles__Quantity-sc-1nfm8rg-1.bcUUur > div > input")).sendKeys("5");
         driver.findElement(By.cssSelector("#main-content > div > div.ProductDetailsPagestyles__ProductOverviewContainer-sc-1waehzg-1.dgDnXa > div > div.ProductOverviewstyles__Container-sc-1a1az6h-2.hrtCoK > div.ProductActionsstyles__ButtonsWrapper-sc-18otgdy-6.gLGIpK > div.ProductActionsstyles__AddToBagButtonWrapper-sc-18otgdy-7.grMSxO > div > div > div > button > div.ButtonLabelWithProgressstyles__StyledMessage-sc-19upyqe-1.ifFIha")).click();
-        driver.findElement(By.cssSelector("body > div:nth-child(23) > div > aside > div > div.AddToBagModalstyles__Container-thtx66-4.bqReQg > div.AddToBagModalstyles__Body-thtx66-6.bgklcV > div.AddToBagModalstyles__ActionsContainer-thtx66-12.ebHfkF > a")).click();
+        driver.findElement(By.cssSelector("a[data-test=\"view-my-bag\"]")).click();
 
         String itemsStr = driver.findElement(By.cssSelector("#main-content > div > div.MinHeightContent-sc-1delze2-0.lfErNH > div.Cartstyles__Wrapper-sc-7x7mam-2.ivTbFz > div.Cartstyles__ContentContainer-sc-7x7mam-3.ccRTdK > div > div > div.LineItemSectionstyles__LineItemsContentWrapper-sc-15qoiay-2.iamOvA > div.LineItemDetailsstyles__ProductRowContainer-sc-1bhwxkp-9.dQATUj > div.LineItemDetailsstyles__CustomWrapper-sc-1bhwxkp-20.jwRwvK > div.LineItemDetailsstyles__LineItemDetailsContainer-sc-1bhwxkp-16.UIsis > div.LineItemDetailsstyles__ActionWrapper-sc-1bhwxkp-7.kTlkVB > div.LineItemDetailsstyles__QuantityContainer-sc-1bhwxkp-2.faijVH > div > div > input")).getDomProperty("value");
 
@@ -297,4 +302,8 @@ public class Tests {
 
         driver.quit();
     }
-    }
+
+
+
+
+}
